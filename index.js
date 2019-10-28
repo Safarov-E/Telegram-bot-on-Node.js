@@ -14,13 +14,10 @@ const bot = new TelegramBot(TOKEN, {
 	}})
 
 bot.on('message', msg => {
-	const html = `
-		<strong>Hello, ${msg.from.first_name}</strong>
-		<pre>
-			${debug(msg)}
-		</pre>
-	`
-	bot.sendMessage(msg.chat.id, html, {
-		parse_mode: 'HTML'
-	})
+	setTimeout(() => {
+		bot.sendMessage(msg.chat.id, `https://javascript.ru/`, {
+			disable_web_page_preview: true,
+			disable_notification: true,
+		})
+	}, 1000)
 })
