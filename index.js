@@ -14,10 +14,33 @@ const bot = new TelegramBot(TOKEN, {
 	}})
 
 bot.on('message', msg => {
-	setTimeout(() => {
-		bot.sendMessage(msg.chat.id, `https://javascript.ru/`, {
-			disable_web_page_preview: true,
-			disable_notification: true,
-		})
-	}, 1000)
+	const chatId = msg.chat.id
+
+	bot.sendMessage(chatId, 'Inline keyboard', {
+		reply_markup: {
+			inline_keyboard: [
+				[
+					{
+						text: 'Google',
+						url: 'https://google.com'
+					}
+				],
+				[
+					{
+						text: 'Reply',
+						callback_data: 'reply'
+					},
+					{
+						text: 'Forward',
+						callback_data: 'forward'
+					}
+				]
+			]
+		}
+	})
+})
+
+bot.on('callback_query', query => {
+	// bot.sendMessage(query.message.chat.id, debug(query))
+	bot.answerCallbackQuery(query.id, `${query.data}`)
 })
