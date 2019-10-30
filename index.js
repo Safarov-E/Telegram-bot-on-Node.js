@@ -14,10 +14,6 @@ const bot = new TelegramBot(TOKEN, {
 		}
 	}})
 
-bot.onText(/\/v1/, msg => {
-	const chatId = msg.chat.id
-	bot.sendMessage(chatId, 'Sending video...')
-	fs.readFile(__dirname + '/small.mp4', (err, video) => {
-		bot.sendVideo(chatId, video)
-	})
+bot.onText(/\/loc/, msg => {
+	bot.sendLocation(msg.chat.id, 59.928831, 30.360586)
 })
