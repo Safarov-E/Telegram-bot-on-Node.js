@@ -13,14 +13,9 @@ const bot = new TelegramBot(TOKEN, {
 			timeout: 10
 		}
 	}})
- 
-bot.onText(/\/doc2/, msg => {
-	bot.sendMessage(msg.chat.id, 'Upload start...')
-	fs.readFile(__dirname + '/wfm.rar', (err, file) => {
-		bot.sendDocument(msg.chat.id, file, {
-			caption: 'Additional text'
-		}).then(() => {
-			bot.sendMessage(msg.chat.id, 'Upload finish')
-		})
+
+bot.onText(/\/s2/, msg => {
+	fs.readFile(__dirname + '/принглс.webp', (err, sticker) => {
+		bot.sendSticker(msg.chat.id, sticker)
 	})
 })
