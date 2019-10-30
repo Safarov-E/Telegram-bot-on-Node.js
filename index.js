@@ -14,12 +14,13 @@ const bot = new TelegramBot(TOKEN, {
 		}
 	}})
  
-bot.onText(/\/audio2/, msg => {
-	bot.sendMessage(msg.chat.id, 'Start audio uploading...')
-
-	fs.readFile(__dirname + '/Thousand Foot Krutch_-_War of Change.mp3', (err, data) => {
-		bot.sendAudio(msg.chat.id, data).then(() => {
-			bot.sendMessage(msg.chat.id, 'Uploading finish')
+bot.onText(/\/doc2/, msg => {
+	bot.sendMessage(msg.chat.id, 'Upload start...')
+	fs.readFile(__dirname + '/wfm.rar', (err, file) => {
+		bot.sendDocument(msg.chat.id, file, {
+			caption: 'Additional text'
+		}).then(() => {
+			bot.sendMessage(msg.chat.id, 'Upload finish')
 		})
 	})
 })
