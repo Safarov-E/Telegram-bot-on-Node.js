@@ -14,9 +14,12 @@ const bot = new TelegramBot(TOKEN, {
 		}
 	}})
  
+bot.onText(/\/audio2/, msg => {
+	bot.sendMessage(msg.chat.id, 'Start audio uploading...')
 
-bot.onText(/\/pic2/, msg => {
-	bot.sendPhoto(msg.chat.id, './140777471_2.jpg', {
-		caption: 'This is cat photo'
+	fs.readFile(__dirname + '/Thousand Foot Krutch_-_War of Change.mp3', (err, data) => {
+		bot.sendAudio(msg.chat.id, data).then(() => {
+			bot.sendMessage(msg.chat.id, 'Uploading finish')
+		})
 	})
 })
