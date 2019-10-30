@@ -14,8 +14,10 @@ const bot = new TelegramBot(TOKEN, {
 		}
 	}})
 
-bot.onText(/\/s2/, msg => {
-	fs.readFile(__dirname + '/принглс.webp', (err, sticker) => {
-		bot.sendSticker(msg.chat.id, sticker)
+bot.onText(/\/v1/, msg => {
+	const chatId = msg.chat.id
+	bot.sendMessage(chatId, 'Sending video...')
+	fs.readFile(__dirname + '/small.mp4', (err, video) => {
+		bot.sendVideo(chatId, video)
 	})
 })
